@@ -1,0 +1,15 @@
+{
+  "name": "science-tech-planner",
+  "version": "1.0.0",
+  "description": "Lab practical and demo equipment planner for science technicians",
+  "private": true,
+  "scripts": {
+    "dev": "wrangler pages dev public --d1 DB",
+    "deploy": "wrangler pages deploy public",
+    "db:init": "wrangler d1 execute science-tech-planner --file=./schema.sql",
+    "db:init:local": "wrangler d1 execute science-tech-planner --local --file=./schema.sql"
+  },
+  "devDependencies": {
+    "wrangler": "^3.0.0"
+  }
+}

@@ -1,0 +1,9 @@
+name = "science-tech-planner"
+compatibility_date = "2024-01-01"
+pages_build_output_dir = "public"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "science-tech-planner"
+# Replace with the ID returned by: wrangler d1 create science-tech-planner
+database_id = "YOUR_D1_DATABASE_ID"
