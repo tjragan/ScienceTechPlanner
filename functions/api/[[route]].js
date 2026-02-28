@@ -171,8 +171,14 @@ CREATE TABLE IF NOT EXISTS experiment_overrides (
 );`;
 
 async function initDB(db) {
-  // D1 exec runs the whole SQL string as individual statements
-  await db.exec(SCHEMA);
+  // Split the schema into individual statements and run as a batch.
+  // Using batch() rather than exec() avoids Miniflare's line-based SQL splitting.
+  const stmts = SCHEMA
+    .split(';')
+    .map(s => s.trim())
+    .filter(s => s.length > 0)
+    .map(s => db.prepare(s));
+  await db.batch(stmts);
 }
 
 // ─────────────────────────────────────────────────────────
